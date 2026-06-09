@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VGSI PILE Weekly Business Briefing</title>
+  <style>
+    :root{
+      --navy:#102a43;--blue:#1677c8;--sky:#eaf4fb;--ink:#17212b;--muted:#667085;
+      --line:#d8e0e8;--bg:#f4f6f8;--white:#fff;--green:#13795b;--orange:#b54708;--red:#b42318
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI","Arial","Noto Sans",sans-serif;letter-spacing:0;overflow-x:hidden}
+    a{color:var(--blue)}
+    button{font:inherit}
+    .wrap{width:100%;max-width:1420px;min-width:0;margin:0 auto;padding:22px}
+    header{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:16px}
+    .brand{font-size:12px;font-weight:800;color:var(--blue);margin-bottom:5px}
+    h1{font-size:26px;line-height:1.25;margin:0 0 6px;color:var(--navy)}
+    h2{font-size:18px;margin:0 0 12px;color:var(--navy)}
+    h3{font-size:15px;margin:0;line-height:1.4}
+    p{font-size:13px;line-height:1.65;margin:8px 0 0;color:#344054}
+    .muted,.stamp{font-size:12px;line-height:1.55;color:var(--muted)}
+    p,.muted,.thesis,.checkpoint,li,td,th{overflow-wrap:anywhere;word-break:normal}
+    .header-tools{display:flex;align-items:flex-start;gap:12px}
+    .stamp{text-align:right;white-space:nowrap}
+    .language-group{display:flex;border:1px solid #b7d0e8;background:#fff;border-radius:6px;overflow:hidden}
+    .language{border:0;border-right:1px solid #d8e4ef;background:#fff;color:var(--muted);padding:8px 11px;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap}
+    .language:last-child{border-right:0}
+    .language.active{background:var(--blue);color:#fff}
+    .language:hover:not(.active){background:#f2f8fd;color:var(--navy)}
+    .panel,.capability,.assessment,.news,.kpi{min-width:0;background:var(--white);border:1px solid var(--line);border-radius:8px}
+    .hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(330px,.7fr);gap:14px;margin-bottom:16px}
+    .company{display:grid;grid-template-columns:340px 1fr;overflow:hidden;min-height:280px}
+    .company img{width:100%;height:100%;object-fit:cover;background:#e5e7eb}
+    .company-copy,.status,.section-panel,.location-copy{min-width:0}
+    .company-copy{padding:20px}
+    .company-copy .label{display:inline-block;font-size:11px;font-weight:800;color:var(--blue);margin-bottom:10px}
+    .company-copy h2{font-size:23px;margin-bottom:7px}
+    .thesis{border-left:4px solid var(--blue);padding-left:12px;margin-top:16px;font-size:14px;line-height:1.7}
+    .status{padding:18px;display:flex;flex-direction:column;justify-content:space-between}
+    .status-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+    .state{font-size:11px;font-weight:800;color:var(--green);background:#e8f5ef;border-radius:999px;padding:4px 7px}
+    .status-value{font-size:38px;font-weight:800;color:var(--navy);margin:10px 0 2px}
+    .status-label{font-size:13px;font-weight:800;color:var(--green)}
+    .status-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+    .status-grid div{background:#f7f9fb;border:1px solid #e7edf3;padding:10px;border-radius:6px}
+    .status-grid span{display:block;font-size:11px;color:var(--muted);margin-bottom:4px}
+    .status-grid strong{font-size:13px}
+    .section{margin-bottom:16px}
+    .detail-strip{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin-bottom:16px;overflow:hidden}
+    .detail-strip div{padding:13px 14px;border-right:1px solid var(--line)}
+    .detail-strip div:last-child{border-right:0}
+    .detail-strip span{display:block;font-size:11px;color:var(--muted);margin-bottom:5px}
+    .detail-strip strong{font-size:13px;color:var(--navy)}
+    .section-intro{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:12px}
+    .section-intro h2{margin-bottom:3px}
+    .kpi-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+    .kpi{padding:14px;min-height:116px}
+    .kpi span{display:block;font-size:11px;color:var(--muted)}
+    .kpi strong{display:block;font-size:22px;color:var(--navy);margin:12px 0 5px}
+    .kpi small{display:block;font-size:11px;line-height:1.45;color:var(--muted)}
+    .kpi.good{border-top:4px solid var(--green)}.kpi.risk{border-top:4px solid var(--red)}
+    .two{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}
+    .section-panel{padding:16px}
+    .chart-block{margin-top:16px}
+    .chart-title{font-size:12px;font-weight:800;color:var(--navy);margin-bottom:8px}
+    .bars{display:grid;grid-template-columns:repeat(5,1fr);align-items:end;height:180px;border-bottom:1px solid var(--line);gap:18px;padding:0 12px}
+    .bar-item{height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px}
+    .bar-value{font-size:11px;font-weight:700;color:#475467}
+    .bar{width:min(42px,70%);background:var(--blue);min-height:5px}
+    .bar.inventory{background:var(--orange)}
+    .bar-month{font-size:11px;color:var(--muted);padding:5px 0 8px}
+    table{width:100%;table-layout:fixed;border-collapse:collapse;font-size:12px}
+    th,td{padding:10px;border-bottom:1px solid #e8edf2;text-align:right;line-height:1.45}
+    th:first-child,td:first-child{text-align:left;font-weight:700}
+    th{background:#eef5fa;color:var(--navy)}
+    .analysis{margin-top:12px;background:#f7fafc;border-left:4px solid var(--blue);padding:12px;font-size:13px;line-height:1.65}
+    .capability-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .capability{padding:15px;min-height:230px;border-top:4px solid var(--blue)}
+    .capability-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .capability-head span{font-size:11px;font-weight:800;color:var(--blue);background:var(--sky);border-radius:999px;padding:4px 7px}
+    .capability>strong{display:block;font-size:17px;color:var(--navy);margin:15px 0 5px}
+    .checkpoint{margin-top:12px;padding-top:10px;border-top:1px solid #e6edf3;font-size:12px;line-height:1.6;color:#475467}
+    .assessment-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .assessment{padding:15px;min-height:255px}
+    .assessment.positive{border-top:4px solid var(--green)}
+    .assessment.risk{border-top:4px solid var(--orange)}
+    .assessment>span{font-size:11px;font-weight:800;color:var(--muted)}
+    .assessment h3{font-size:17px;color:var(--navy);margin-top:8px}
+    .assessment ul{margin:13px 0 0;padding-left:18px}
+    .assessment li{font-size:12px;line-height:1.65;margin-bottom:8px;color:#344054}
+    .project-list{display:grid;grid-template-columns:1fr;gap:12px}
+    .project-group{background:#fff;border:1px solid var(--line);border-radius:8px;padding:16px;min-width:0}
+    .project-group-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:11px;border-bottom:2px solid var(--blue)}
+    .project-group-head h3{font-size:16px;color:var(--navy)}
+    .project-count{font-size:11px;font-weight:800;color:var(--blue);background:var(--sky);border-radius:999px;padding:4px 8px}
+    .project-group ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:22px;list-style:none;margin:10px 0 0;padding:0}
+    .project-group li{border-bottom:1px solid #edf1f5}
+    .project-group li:last-child{border-bottom:0}
+    .project-group a{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 2px;text-decoration:none;color:var(--ink);font-size:12px;line-height:1.45}
+    .project-group a:hover{color:var(--blue)}
+    .project-arrow{flex:0 0 auto;color:var(--blue);font-weight:800}
+    .location{display:grid;grid-template-columns:380px 1fr;overflow:hidden;min-height:310px}
+    .location-copy{padding:18px}
+    .location iframe{width:100%;height:100%;border:0;min-height:310px}
+    .address{font-size:17px;font-weight:800;color:var(--navy);line-height:1.5;margin:12px 0}
+    .button{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid #b7d0e8;background:#f2f8fd;border-radius:6px;padding:9px 12px;font-size:12px;font-weight:800;margin-top:14px}
+    .news-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .news{padding:14px}
+    .news-meta{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .news-meta span{font-size:11px;font-weight:800;border-radius:999px;padding:4px 7px;background:var(--sky);color:var(--blue)}
+    .news-meta time{font-size:11px;color:var(--muted)}
+    .news h3{margin-top:12px}.news a{display:inline-block;margin-top:10px;font-size:12px;font-weight:800}
+    .sources{display:flex;gap:8px;flex-wrap:wrap;padding:14px}
+    .sources a,.source-pill{font-size:12px;font-weight:700;text-decoration:none;border:1px solid #c7d7e7;background:#f6f9fc;border-radius:6px;padding:7px 9px;color:var(--blue)}
+    .footnote{font-size:11px;color:var(--muted);line-height:1.6;margin-top:10px}
+    @media(max-width:1100px){
+      .hero,.two{grid-template-columns:1fr}.detail-strip,.kpi-grid{grid-template-columns:repeat(3,1fr)}
+      .capability-grid{grid-template-columns:1fr 1fr}.assessment-grid{grid-template-columns:1fr 1fr}
+      .project-group ul{grid-template-columns:1fr 1fr}.location{grid-template-columns:1fr}
+    }
+    @media(max-width:680px){
+      .wrap{padding:12px}header{flex-direction:column}.header-tools{width:100%;flex-direction:column;align-items:flex-start}
+      .language{padding:8px 9px}
+      h1,h2,h3,.address{overflow-wrap:anywhere}.stamp{text-align:left;white-space:normal}.company{grid-template-columns:minmax(0,1fr)}.company img{height:230px}
+      .section-intro{display:block}.detail-strip,.kpi-grid,.capability-grid,.assessment-grid,.project-list,.news-grid{grid-template-columns:1fr}
+      .project-group ul{grid-template-columns:1fr}
+      .bars{gap:7px;padding:0}.bar{width:28px}
+    }
+  </style>
+</head>
+<body>
+  <main id="app" class="wrap"></main>
+  <script>
+    const content = {"en":{"lang":"en","switchLabel":"Tiếng Việt","eyebrow":"VGSI PILE | EXECUTIVE BRIEFING","title":"VGSI PILE Weekly Business Briefing","subtitle":"Company profile, production, quality, inventory, safety and market references","schedule":"Planned refresh: every Monday at 09:00","asOf":"Report date","generated":"Generated","profileLabel":"COMPANY PROFILE","profileTitle":"VGSI PILE · One-stop solutions for spun piles","profileText":"VGSI PILE manufactures high-performance prestressed spun concrete piles for industrial, infrastructure, residential and marine projects. Its integrated model covers design, manufacturing, delivery and construction support.","thesisLabel":"Business profile.","thesis":"The integrated factory, inland port and broad PHC pile range support reliable supply for industrial, infrastructure, residential and marine projects across southern Vietnam.","officialPhoto":"Official VGSI factory aerial image","operatingTitle":"May 2026 operating status","operatingState":"MONTH CLOSED","achievement":"112.9%","achievementLabel":"Production achievement","operatingFacts":[["Actual production","9,035 t"],["Monthly plan","8,000 t"],["YTD production","38,063 t"],["No-accident days","159 days"]],"detailFacts":[["Established","2019-05-10"],["Factory area","70,001 m²"],["Annual capacity","1,000,000 m"],["Product range","D300-D800 / A, B, C"],["Employees","113"],["Inland port","3,000 DWT"]],"portfolioTitle":"Business and capability portfolio","portfolioNote":"The business is positioned as an integrated technical supplier, not only a pile producer.","portfolio":[{"tag":"CORE","title":"PHC pile manufacturing","value":"D300-D800","text":"TCVN and JIS-compatible products for industrial, residential, infrastructure and marine applications."},{"tag":"SERVICE","title":"One-stop project support","value":"Design → Product → Construction","text":"Pre-construction engineering, product customization, delivery planning and technical support."},{"tag":"GREEN","title":"Green materials and GGBS","value":"Lower-carbon concrete","text":"Green cement technology and sulfate-resistant products support durability and lower environmental impact."}],"projectsTitle":"Selected project references","projectNote":"37 official references · grouped by project type","projectLinkLabel":"View project","projects":[["Residential","Blanca City Urban Area Vung Tau","https://vgsi.vn/pile-projects/blanca-city-urban-area-vung-tau/"],["Industrial","GREENWITCH VINA FACTORY","https://vgsi.vn/pile-projects/greenwitch-vina-factory/"],["Industrial","LOTTE GLOBAL LOGISTICS VIET NAM","https://vgsi.vn/pile-projects/lotte-global-logistics-viet-nam/"],["Industrial","SEAH M&S VIETNAM PLANT","https://vgsi.vn/pile-projects/seah-ms-vietnam-plant/"],["Industrial","SAMHWA PAINT VH FACTORY","https://vgsi.vn/pile-projects/samhwa-paint-vh-factory/"],["Industrial","Oxygen Production Plant (H2O2) - Hydrogen Gas","https://vgsi.vn/pile-projects/oxygen-production-plant-h2o2-hydrogen-gas/"],["Industrial","The Square Artificial Quartz Stone Production Factory","https://vgsi.vn/pile-projects/5654/"],["Industrial","AK VINA LOTUS FACTORY","https://vgsi.vn/pile-projects/ak-vina-lotus-factory/"],["Industrial","High-Tech Steel Builder Factory (HTSB)","https://vgsi.vn/pile-projects/steel-builder-high-tech-steel-joint-stock-company-htsb/"],["Industrial","KFOOD Storehouse","https://vgsi.vn/pile-projects/kfood-storehouse/"],["Industrial","POCARI Factory","https://vgsi.vn/pile-projects/pocari-factory/"],["Industrial","Coretronic Vietnam Factory (Phase A)","https://vgsi.vn/pile-projects/coretronic-vietnam-factory-phase-a/"],["Industrial","LEGO Vietnam Factory","https://vgsi.vn/pile-projects/lego-vietnam-factory/"],["Industrial","Coretronic Vietnam Factory (Phase B)","https://vgsi.vn/pile-projects/coretronic-vietnam-factory-phase-b/"],["Industrial","ACESO Dental Laboratory","https://vgsi.vn/pile-projects/aceso-dental-laboratory/"],["Industrial","EUNDAN Beverage Manufacturing Factory","https://vgsi.vn/pile-projects/eundan-beverage-manufacturing-factory/"],["Industrial","Factory of LogisAll Vietnam Company Limited","https://vgsi.vn/pile-projects/logisall-factory/"],["Industrial","Silo 12,000m3 Go Dau","https://vgsi.vn/pile-projects/silo-go-dau/"],["Industrial","Factory of Coretronic Vietnam Company Limited","https://vgsi.vn/pile-projects/coretronic-factory/"],["Industrial","Project No. 31 - BW Tan Dong Hiep","https://vgsi.vn/pile-projects/project-no-31-bw-tan-dong-hiep/"],["Industrial","Daeyoung EP Vina Extension","https://vgsi.vn/pile-projects/daeyoung-ep-vina-extension/"],["Industrial","Project No. 06 - BW Tan Dong Hiep","https://vgsi.vn/pile-projects/project-no-06-bw-tan-dong-hiep/"],["Industrial","Project No. 34 - BW Tan Dong Hiep","https://vgsi.vn/pile-projects/project-no-34-bw-tan-dong-hiep-copy/"],["Industrial","Won ST Vina Factory","https://vgsi.vn/pile-projects/won-st/"],["Industrial","Project No. 20 - BW Tan Dong Hiep","https://vgsi.vn/pile-projects/project-no-20-bw-tan-dong-hiep/"],["Residential","Sophia Phu Cuong Rach Gia","https://vgsi.vn/pile-projects/sophia-phu-cuong-rach-gia/"],["Industrial","Shinheung Factory","https://vgsi.vn/pile-projects/shinheung-factory/"],["Infrastructure","Da Den Water Factory","https://vgsi.vn/pile-projects/da-den-water-factory/"],["Industrial","HanLam Factory","https://vgsi.vn/pile-projects/hanlam-factory/"],["Industrial","KCTC Warehouse","https://vgsi.vn/pile-projects/kctc-warehouse/"],["Residential","Hoa Sen Dai Phuoc (Swanbay6)","https://vgsi.vn/pile-projects/hoa-sen-dai-phuoc-swanbay6/"],["Residential","GS Metro City","https://vgsi.vn/pile-projects/gs-mtro-city/"],["Industrial","Changshin Factory","https://vgsi.vn/pile-projects/changshin-factory/"],["Industrial","VGSI Gypsum Factory","https://vgsi.vn/pile-projects/vgsi-gypsum-factory/"],["Industrial","Viky Food Factory","https://vgsi.vn/pile-projects/viky-food-factory/"],["Residential","Thien An Vila","https://vgsi.vn/pile-projects/thien-an-vila/"],["Industrial","CS Bearing Factory","https://vgsi.vn/pile-projects/cs-bearing-factory/"]],"locationTitle":"Factory location","address":"Lot LW1, Phu My 3 Specialized Industrial Park, Tan Phuoc Ward, Ho Chi Minh City, Vietnam","contact":"(+84-254) 627 2684 · vgsipile@gsenc.com","mapButton":"Open in Google Maps","newsTitle":"Latest official updates","news":[{"tag":"People","date":"2025-11-04","title":"VGSI PILE Mid-Autumn Festival","text":"The latest official VGSI PILE post covers company activities, employee engagement and workplace culture.","link":"https://vgsi.vn/vi/tung-bung-ngay-hoi-trung-thu-2025-tai-cong-ty-vgsi-pile/"},{"tag":"Company","date":"2025-01-23","title":"VGSI PILE Year-end gathering 2025","text":"The company gathered employees for sports, recognition and year-end communication.","link":"https://vgsi.vn/vi/tin-tuc-hoat-dong/"},{"tag":"Reference","date":"Current","title":"Project reference portfolio","text":"Official reference list covering industrial, residential and infrastructure projects.","link":"https://vgsi.vn/pile-project/"}],"readMore":"Open source","sourcesTitle":"Sources","sourceLabels":["Official website","Company profile","Projects","Manufacturing process","Monthly KPI source"],"sourceNote":"Operating figures use the May 2026 PILE Monthly Business Report and Production Monthly Report. Company profile data and images use official VGSI sources. This is a management briefing, not an audited financial report."},"ko":{"lang":"ko","eyebrow":"VGSI PILE | 경영 브리핑","title":"VGSI PILE 주간 경영 브리핑","subtitle":"회사 개요, 생산, 품질, 재고, 안전 및 주요 프로젝트 통합","schedule":"매주 월요일 09:00 자동 갱신","asOf":"기준일","generated":"생성시각","profileLabel":"회사 개요","profileTitle":"VGSI PILE · PHC 파일 통합 솔루션","profileText":"VGSI PILE은 산업시설, 인프라, 주거 및 항만 프로젝트에 적용되는 고성능 프리스트레스트 원심력 콘크리트 파일을 생산합니다. 설계, 생산, 출하 및 시공 기술지원까지 통합 서비스를 제공합니다.","thesisLabel":"사업 특성.","thesis":"공장, 전용 부두 및 다양한 PHC 파일 제품군을 통합해 베트남 남부의 산업시설, 인프라, 주거 및 항만 프로젝트에 안정적인 공급 기반을 제공합니다.","officialPhoto":"VGSI 공식 공장 항공사진","operatingTitle":"2026년 5월 운영 현황","operatingState":"월 마감","achievement":"112.9%","achievementLabel":"생산계획 달성률","operatingFacts":[["생산 실적","9,035톤"],["월간 계획","8,000톤"],["누적 생산","38,063톤"],["무재해 일수","159일"]],"detailFacts":[["설립일","2019-05-10"],["공장 면적","70,001m²"],["연간 생산능력","1,000,000m"],["제품 규격","D300-D800 / A, B, C"],["종업원","113명"],["전용 부두","3,000DWT"]],"portfolioTitle":"사업 및 핵심역량 포트폴리오","portfolioNote":"단순 파일 제조사가 아닌 설계·생산·출하·시공 기술을 연결하는 통합 기술 공급사입니다.","portfolio":[{"tag":"핵심사업","title":"PHC 파일 제조","value":"D300-D800","text":"산업시설, 주거, 인프라 및 항만용 TCVN·JIS 대응 제품을 생산합니다."},{"tag":"서비스","title":"프로젝트 통합 지원","value":"설계 → 제품 → 시공","text":"착공 전 설계검토, 제품 맞춤화, 출하계획 및 현장 기술지원을 제공합니다."},{"tag":"친환경","title":"친환경 소재 및 GGBS","value":"저탄소 콘크리트","text":"친환경 시멘트 기술과 내황산염 제품으로 내구성과 환경성을 강화합니다."}],"projectsTitle":"주요 프로젝트 실적","projectNote":"공식 수행실적 37건 · 프로젝트 유형별 분류","projectLinkLabel":"프로젝트 보기","projects":[["주거","Blanca City Urban Area Vung Tau","https://vgsi.vn/pile-projects/blanca-city-urban-area-vung-tau/"],["산업시설","GREENWITCH VINA FACTORY","https://vgsi.vn/pile-projects/greenwitch-vina-factory/"],["산업시설","LOTTE GLOBAL LOGISTICS VIET NAM","https://vgsi.vn/pile-projects/lotte-global-logistics-viet-nam/"],["산업시설","SEAH M&S VIETNAM PLANT","https://vgsi.vn/pile-projects/seah-ms-vietnam-plant/"],["산업시설","SAMHWA PAINT VH FACTORY","https://vgsi.vn/pile-projects/samhwa-paint-vh-factory/"],["산업시설","Oxygen Production Plant (H2O2) - Hydrogen Gas","https://vgsi.vn/pile-projects/oxygen-production-plant-h2o2-hydrogen-gas/"],["산업시설","The Square Artificial Quartz Stone Production Factory","https://vgsi.vn/pile-projects/5654/"],["산업시설","AK VINA LOTUS FACTORY","https://vgsi.vn/pile-projects/ak-vina-lotus-factory/"],["산업시설","High-Tech Steel Builder Factory (HTSB)","https://vgsi.vn/pile-projects/steel-builder-high-tech-steel-joint-stock-company-htsb/"],["산업시설","KFOOD Storehouse","https://vgsi.vn/pile-projects/kfood-storehouse/"],["산업시설","POCARI Factory","https://vgsi.vn/pile-projects/pocari-factory/"],["산업시설","Coretronic Vietnam Factory (Phase A)","https://vgsi.vn/pile-projects/coretronic-vietnam-factory-phase-a/"],["산업시설","LEGO Vietnam Factory","https://vgsi.vn/pile-projects/lego-vietnam-factory/"],["산업시설","Coretronic Vietnam Factory (Phase B)","https://vgsi.vn/pile-projects/coretronic-vietnam-factory-phase-b/"],["산업시설","ACESO Dental Laboratory","https://vgsi.vn/pile-projects/aceso-dental-laboratory/"],["산업시설","EUNDAN Beverage Manufacturing Factory","https://vgsi.vn/pile-projects/eundan-beverage-manufacturing-factory/"],["산업시설","Factory of LogisAll Vietnam Company Limited","https://vgsi.vn/pile-projects/logisall-factory/"],["산업시설","Silo 12,000m3 Go Dau","https://vgsi.vn/pile-projects/silo-go-dau/"],["산업시설","Factory of Coretronic Vietnam Company Limited","https://vgsi.vn/pile-projects/coretronic-factory/"],["산업시설","Project No. 31 - BW Tan Dong Hiep","https://vgsi.vn/pile-projects/project-no-31-bw-tan-dong-hiep/"],["산업시설","Daeyoung EP Vina Extension","https://vgsi.vn/pile-projects/daeyoung-ep-vina-extension/"],["산업시설","Project No. 06 - BW Tan Dong Hiep","https://vgsi.vn/pile-projects/project-no-06-bw-tan-dong-hiep/"],["산업시설","Project No. 34 - BW Tan Dong Hiep","https://vgsi.vn/pile-projects/project-no-34-bw-tan-dong-hiep-copy/"],["산업시설","Won ST Vina Factory","https://vgsi.vn/pile-projects/won-st/"],["산업시설","Project No. 20 - BW Tan Dong Hiep","https://vgsi.vn/pile-projects/project-no-20-bw-tan-dong-hiep/"],["주거","Sophia Phu Cuong Rach Gia","https://vgsi.vn/pile-projects/sophia-phu-cuong-rach-gia/"],["산업시설","Shinheung Factory","https://vgsi.vn/pile-projects/shinheung-factory/"],["인프라","Da Den Water Factory","https://vgsi.vn/pile-projects/da-den-water-factory/"],["산업시설","HanLam Factory","https://vgsi.vn/pile-projects/hanlam-factory/"],["산업시설","KCTC Warehouse","https://vgsi.vn/pile-projects/kctc-warehouse/"],["주거","Hoa Sen Dai Phuoc (Swanbay6)","https://vgsi.vn/pile-projects/hoa-sen-dai-phuoc-swanbay6/"],["주거","GS Metro City","https://vgsi.vn/pile-projects/gs-mtro-city/"],["산업시설","Changshin Factory","https://vgsi.vn/pile-projects/changshin-factory/"],["산업시설","VGSI Gypsum Factory","https://vgsi.vn/pile-projects/vgsi-gypsum-factory/"],["산업시설","Viky Food Factory","https://vgsi.vn/pile-projects/viky-food-factory/"],["주거","Thien An Vila","https://vgsi.vn/pile-projects/thien-an-vila/"],["산업시설","CS Bearing Factory","https://vgsi.vn/pile-projects/cs-bearing-factory/"]],"locationTitle":"공장 위치","address":"베트남 호치민시 Tan Phuoc Ward, Phu My 3 Specialized Industrial Park, Lot LW1","contact":"(+84-254) 627 2684 · vgsipile@gsenc.com","mapButton":"Google 지도에서 열기","newsTitle":"최신 공식 소식","news":[{"tag":"임직원","date":"2025-11-04","title":"VGSI PILE 최신 사내 행사","text":"공식 VGSI PILE 게시물에서 임직원 참여와 조직문화 관련 최신 활동을 소개합니다.","link":"https://vgsi.vn/vi/tung-bung-ngay-hoi-trung-thu-2025-tai-cong-ty-vgsi-pile/"},{"tag":"회사","date":"2025-01-23","title":"VGSI PILE 2025년 연말행사","text":"임직원 체육활동, 성과 격려 및 연말 경영 메시지를 공유했습니다.","link":"https://vgsi.vn/vi/tin-tuc-hoat-dong/"},{"tag":"수행실적","date":"현재","title":"프로젝트 레퍼런스 포트폴리오","text":"산업시설, 주거 및 인프라 분야의 공식 수행 프로젝트를 확인할 수 있습니다.","link":"https://vgsi.vn/pile-project/"}],"readMore":"출처 열기","sourcesTitle":"자료 출처","sourceLabels":["공식 웹사이트","회사소개서","프로젝트","생산공정","월간 KPI 원본"],"sourceNote":"운영 수치는 2026년 5월 PILE Monthly Business Report와 Production Monthly Report를 사용했습니다. 회사정보와 이미지는 VGSI 공식 자료를 사용했습니다. 본 문서는 경영 브리핑이며 감사 재무제표가 아닙니다."},"vi":{"lang":"vi","switchLabel":"English","eyebrow":"VGSI PILE | BẢN TIN ĐIỀU HÀNH","title":"Bản tin kinh doanh hàng tuần VGSI PILE","subtitle":"Tổng quan công ty, sản xuất, chất lượng, tồn kho, an toàn và dự án tham chiếu","schedule":"Kế hoạch cập nhật: 09:00 sáng thứ Hai hàng tuần","asOf":"Ngày báo cáo","generated":"Thời gian tạo","profileLabel":"GIỚI THIỆU CÔNG TY","profileTitle":"VGSI PILE · Giải pháp trọn gói cho cọc ly tâm","profileText":"VGSI PILE sản xuất cọc bê tông ly tâm dự ứng lực chất lượng cao cho các dự án công nghiệp, hạ tầng, dân dụng và cảng biển. Mô hình tích hợp bao gồm thiết kế, sản xuất, giao hàng và hỗ trợ thi công.","thesisLabel":"Đặc điểm kinh doanh.","thesis":"Nhà máy tích hợp, cảng nội địa và danh mục cọc PHC đa dạng tạo nền tảng cung ứng ổn định cho các dự án công nghiệp, hạ tầng, dân dụng và cảng biển tại miền Nam Việt Nam.","officialPhoto":"Ảnh toàn cảnh nhà máy VGSI chính thức","operatingTitle":"Tình hình vận hành tháng 05-2026","operatingState":"ĐÃ CHỐT THÁNG","achievement":"112,9%","achievementLabel":"Mức hoàn thành sản lượng","operatingFacts":[["Sản lượng thực tế","9.035 tấn"],["Kế hoạch tháng","8.000 tấn"],["Lũy kế sản lượng","38.063 tấn"],["Số ngày không tai nạn","159 ngày"]],"detailFacts":[["Thành lập","2019-05-10"],["Diện tích nhà máy","70.001 m²"],["Công suất năm","1.000.000 m"],["Dải sản phẩm","D300-D800 / A, B, C"],["Nhân sự","113"],["Cảng nội địa","3.000 DWT"]],"portfolioTitle":"Danh mục kinh doanh và năng lực","portfolioNote":"VGSI PILE được định vị là nhà cung cấp kỹ thuật tích hợp, không chỉ là nhà sản xuất cọc.","portfolio":[{"tag":"CỐT LÕI","title":"Sản xuất cọc PHC","value":"D300-D800","text":"Sản phẩm theo tiêu chuẩn TCVN và JIS cho công nghiệp, dân dụng, hạ tầng và cảng biển."},{"tag":"DỊCH VỤ","title":"Hỗ trợ dự án trọn gói","value":"Thiết kế → Sản phẩm → Thi công","text":"Kỹ thuật tiền thi công, tùy chỉnh sản phẩm, kế hoạch giao hàng và hỗ trợ kỹ thuật."},{"tag":"XANH","title":"Vật liệu xanh và GGBS","value":"Bê tông phát thải thấp","text":"Công nghệ xi măng xanh và sản phẩm kháng sulfate hỗ trợ độ bền và giảm tác động môi trường."}],"projectsTitle":"Dự án tham chiếu tiêu biểu","projectNote":"37 dự án tham chiếu chính thức · phân loại theo lĩnh vực","projectLinkLabel":"Xem dự án","projects":[["Dân dụng","Blanca City Urban Area Vung Tau","https://vgsi.vn/pile-projects/blanca-city-urban-area-vung-tau/"],["Công nghiệp","GREENWITCH VINA FACTORY","https://vgsi.vn/pile-projects/greenwitch-vina-factory/"],["Công nghiệp","LOTTE GLOBAL LOGISTICS VIET NAM","https://vgsi.vn/pile-projects/lotte-global-logistics-viet-nam/"],["Công nghiệp","SEAH M&S VIETNAM PLANT","https://vgsi.vn/pile-projects/seah-ms-vietnam-plant/"],["Công nghiệp","SAMHWA PAINT VH FACTORY","https://vgsi.vn/pile-projects/samhwa-paint-vh-factory/"],["Công nghiệp","Oxygen Production Plant (H2O2) - Hydrogen Gas","https://vgsi.vn/pile-projects/oxygen-production-plant-h2o2-hydrogen-gas/"],["Công nghiệp","The Square Artificial Quartz Stone Production Factory","https://vgsi.vn/pile-projects/5654/"],["Công nghiệp","AK VINA LOTUS FACTORY","https://vgsi.vn/pile-projects/ak-vina-lotus-factory/"],["Công nghiệp","High-Tech Steel Builder Factory (HTSB)","https://vgsi.vn/pile-projects/steel-builder-high-tech-steel-joint-stock-company-htsb/"],["Công nghiệp","KFOOD Storehouse","https://vgsi.vn/pile-projects/kfood-storehouse/"],["Công nghiệp","POCARI Factory","https://vgsi.vn/pile-projects/pocari-factory/"],["Công nghiệp","Coretronic Vietnam Factory (Phase A)","https://vgsi.vn/pile-projects/coretronic-vietnam-factory-phase-a/"],["Công nghiệp","LEGO Vietnam Factory","https://vgsi.vn/pile-projects/lego-vietnam-factory/"],["Công nghiệp","Coretronic Vietnam Factory (Phase B)","https://vgsi.vn/pile-projects/coretronic-vietnam-factory-phase-b/"],["Công nghiệp","ACESO Dental Laboratory","https://vgsi.vn/pile-projects/aceso-dental-laboratory/"],["Công nghiệp","EUNDAN Beverage Manufacturing Factory","https://vgsi.vn/pile-projects/eundan-beverage-manufacturing-factory/"],["Công nghiệp","Factory of LogisAll Vietnam Company Limited","https://vgsi.vn/pile-projects/logisall-factory/"],["Công nghiệp","Silo 12,000m3 Go Dau","https://vgsi.vn/pile-projects/silo-go-dau/"],["Công nghiệp","Factory of Coretronic Vietnam Company Limited","https://vgsi.vn/pile-projects/coretronic-factory/"],["Công nghiệp","Project No. 31 - BW Tan Dong Hiep","https://vgsi.vn/pile-projects/project-no-31-bw-tan-dong-hiep/"],["Công nghiệp","Daeyoung EP Vina Extension","https://vgsi.vn/pile-projects/daeyoung-ep-vina-extension/"],["Công nghiệp","Project No. 06 - BW Tan Dong Hiep","https://vgsi.vn/pile-projects/project-no-06-bw-tan-dong-hiep/"],["Công nghiệp","Project No. 34 - BW Tan Dong Hiep","https://vgsi.vn/pile-projects/project-no-34-bw-tan-dong-hiep-copy/"],["Công nghiệp","Won ST Vina Factory","https://vgsi.vn/pile-projects/won-st/"],["Công nghiệp","Project No. 20 - BW Tan Dong Hiep","https://vgsi.vn/pile-projects/project-no-20-bw-tan-dong-hiep/"],["Dân dụng","Sophia Phu Cuong Rach Gia","https://vgsi.vn/pile-projects/sophia-phu-cuong-rach-gia/"],["Công nghiệp","Shinheung Factory","https://vgsi.vn/pile-projects/shinheung-factory/"],["Hạ tầng","Da Den Water Factory","https://vgsi.vn/pile-projects/da-den-water-factory/"],["Công nghiệp","HanLam Factory","https://vgsi.vn/pile-projects/hanlam-factory/"],["Công nghiệp","KCTC Warehouse","https://vgsi.vn/pile-projects/kctc-warehouse/"],["Dân dụng","Hoa Sen Dai Phuoc (Swanbay6)","https://vgsi.vn/pile-projects/hoa-sen-dai-phuoc-swanbay6/"],["Dân dụng","GS Metro City","https://vgsi.vn/pile-projects/gs-mtro-city/"],["Công nghiệp","Changshin Factory","https://vgsi.vn/pile-projects/changshin-factory/"],["Công nghiệp","VGSI Gypsum Factory","https://vgsi.vn/pile-projects/vgsi-gypsum-factory/"],["Công nghiệp","Viky Food Factory","https://vgsi.vn/pile-projects/viky-food-factory/"],["Dân dụng","Thien An Vila","https://vgsi.vn/pile-projects/thien-an-vila/"],["Công nghiệp","CS Bearing Factory","https://vgsi.vn/pile-projects/cs-bearing-factory/"]],"locationTitle":"Vị trí nhà máy","address":"Lô LW1, Khu công nghiệp chuyên sâu Phú Mỹ 3, phường Tân Phước, Thành phố Hồ Chí Minh, Việt Nam","contact":"(+84-254) 627 2684 · vgsipile@gsenc.com","mapButton":"Mở bằng Google Maps","newsTitle":"Cập nhật chính thức mới nhất","news":[{"tag":"Nhân sự","date":"2025-11-04","title":"TƯNG BỪNG NGÀY HỘI TRUNG THU 2025 TẠI CÔNG TY VGSI PILE","text":"Nhân dịp Tết Trung thu, ngày 4/10/2025, Công ty VGSI PILE đã tổ chức thành công chương trình “Trăng yêu thương” dành cho con em cán bộ, công nhân viên [...]","link":"https://vgsi.vn/vi/tung-bung-ngay-hoi-trung-thu-2025-tai-cong-ty-vgsi-pile/"},{"tag":"Công ty","date":"2025-01-23","title":"Tất niên VGSI PILE 2025","text":"Công ty tổ chức hoạt động thể thao, ghi nhận đóng góp và truyền thông cuối năm cho người lao động.","link":"https://vgsi.vn/vi/tin-tuc-hoat-dong/"},{"tag":"Tham chiếu","date":"Hiện tại","title":"Danh mục dự án tham chiếu","text":"Danh sách chính thức gồm các dự án công nghiệp, dân dụng và hạ tầng.","link":"https://vgsi.vn/vi/pile-du-an/"}],"readMore":"Mở nguồn","sourcesTitle":"Nguồn dữ liệu","sourceLabels":["Website chính thức","Hồ sơ công ty","Dự án","Quy trình sản xuất","Nguồn KPI tháng"],"sourceNote":"Số liệu vận hành sử dụng PILE Monthly Business Report và Production Monthly Report tháng 05-2026. Thông tin công ty và hình ảnh sử dụng nguồn chính thức của VGSI. Đây là bản tin điều hành, không phải báo cáo tài chính đã kiểm toán."}};
+    const sourceLinks = ["https://vgsi.vn/pile-business/","https://vgsi.vn/wp-content/uploads/2024/12/Company-profile_VGSI-PILE-2025.pdf","https://vgsi.vn/pile-project/","https://vgsi.vn/pile-manufacturing-process/",null];
+    const reportDate = "2026-06-09";
+    const timestamp = "09/06/2026, 15:24";
+    const mapEmbedUrl = "https://www.google.com/maps?q=VGSI%20PILE%20Factory%20Lot%20LW1%20Phu%20My%203%20Specialized%20Industrial%20Park%20Tan%20Phuoc%20Vietnam&output=embed";
+    const mapOpenUrl = "https://www.google.com/maps/search/?api=1&query=VGSI%20PILE%20Factory%20Lot%20LW1%20Phu%20My%203%20Specialized%20Industrial%20Park%20Tan%20Phuoc%20Vietnam";
+    const requestedLanguage = new URLSearchParams(window.location.search).get('lang');
+    const languageLabels = { en: 'English', ko: '한국어', vi: 'Tiếng Việt' };
+    let currentLanguage = ['en', 'ko', 'vi'].includes(requestedLanguage)
+      ? requestedLanguage
+      : (localStorage.getItem('vgsi-brief-language') || 'en');
+
+    const escapeHtml = (value) => String(value)
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+
+    const bars = (labels, values, type = '') => {
+      const max = Math.max(...values);
+      return '<div class="bars">' + values.map((value, index) => `
+        <div class="bar-item">
+          <div class="bar-value">${value.toLocaleString()}</div>
+          <div class="bar ${type}" style="height:${Math.max(8, (value / max) * 125)}px"></div>
+          <div class="bar-month">${escapeHtml(labels[index])}</div>
+        </div>`).join('') + '</div>';
+    };
+
+    function render() {
+      const c = content[currentLanguage];
+      document.documentElement.lang = c.lang;
+      document.title = c.title;
+      const detailFacts = c.detailFacts.map(([label, value]) =>
+        `<div><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`).join('');
+      const operatingFacts = c.operatingFacts.map(([label, value]) =>
+        `<div><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`).join('');
+      const portfolio = c.portfolio.map((item) => `
+        <article class="capability">
+          <div class="capability-head"><h3>${escapeHtml(item.title)}</h3><span>${escapeHtml(item.tag)}</span></div>
+          <strong>${escapeHtml(item.value)}</strong>
+          <p>${escapeHtml(item.text)}</p>
+        </article>`).join('');
+      const groupedProjects = c.projects.reduce((groups, [type, name, link]) => {
+        if (!groups[type]) groups[type] = [];
+        groups[type].push({ name, link });
+        return groups;
+      }, {});
+      const projects = Object.entries(groupedProjects).map(([type, items]) => `
+        <article class="project-group">
+          <div class="project-group-head">
+            <h3>${escapeHtml(type)}</h3>
+            <span class="project-count">${items.length}</span>
+          </div>
+          <ul>${items.map((item) => `
+            <li><a href="${escapeHtml(item.link)}" target="_blank" rel="noopener" title="${escapeHtml(c.projectLinkLabel)}">
+              <span>${escapeHtml(item.name)}</span><span class="project-arrow">↗</span>
+            </a></li>`).join('')}</ul>
+        </article>`).join('');
+      const news = c.news.map((item) => `
+        <article class="news">
+          <div class="news-meta"><span>${escapeHtml(item.tag)}</span><time>${escapeHtml(item.date)}</time></div>
+          <h3>${escapeHtml(item.title)}</h3>
+          <p>${escapeHtml(item.text)}</p>
+          <a href="${escapeHtml(item.link)}" target="_blank" rel="noopener">${escapeHtml(c.readMore)}</a>
+        </article>`).join('');
+      const sources = c.sourceLabels.map((label, index) => sourceLinks[index]
+        ? `<a href="${escapeHtml(sourceLinks[index])}" target="_blank" rel="noopener">${escapeHtml(label)}</a>`
+        : `<span class="source-pill">${escapeHtml(label)}</span>`).join('');
+      const languageButtons = Object.entries(languageLabels).map(([code, label]) => `
+        <button class="language ${code === currentLanguage ? 'active' : ''}" data-language="${code}" type="button" aria-pressed="${code === currentLanguage}">
+          ${escapeHtml(label)}
+        </button>`).join('');
+
+      document.getElementById('app').innerHTML = `
+        <header>
+          <div>
+            <div class="brand">${escapeHtml(c.eyebrow)}</div>
+            <h1>${escapeHtml(c.title)}</h1>
+            <div class="muted">${escapeHtml(c.subtitle)} · ${escapeHtml(c.schedule)}</div>
+          </div>
+          <div class="header-tools">
+            <div class="language-group" role="group" aria-label="Language">${languageButtons}</div>
+            <div class="stamp">${escapeHtml(c.asOf)} ${reportDate}<br>${escapeHtml(c.generated)} ${timestamp}</div>
+          </div>
+        </header>
+
+        <section class="hero">
+          <article class="panel company">
+            <img src="assets/vgsi-pile-factory.jpg" alt="${escapeHtml(c.officialPhoto)}">
+            <div class="company-copy">
+              <span class="label">${escapeHtml(c.profileLabel)}</span>
+              <h2>${escapeHtml(c.profileTitle)}</h2>
+              <p>${escapeHtml(c.profileText)}</p>
+              <div class="thesis"><strong>${escapeHtml(c.thesisLabel)}</strong> ${escapeHtml(c.thesis)}</div>
+              <div class="footnote">${escapeHtml(c.officialPhoto)} · vgsi.vn</div>
+            </div>
+          </article>
+          <aside class="panel status">
+            <div>
+              <div class="status-top"><h2>${escapeHtml(c.operatingTitle)}</h2><span class="state">${escapeHtml(c.operatingState)}</span></div>
+              <div class="status-value">${escapeHtml(c.achievement)}</div>
+              <div class="status-label">${escapeHtml(c.achievementLabel)}</div>
+              <div class="status-grid">${operatingFacts}</div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="panel detail-strip">${detailFacts}</section>
+
+        <section class="section">
+          <div class="section-intro">
+            <div><h2>${escapeHtml(c.portfolioTitle)}</h2><div class="muted">${escapeHtml(c.portfolioNote)}</div></div>
+          </div>
+          <div class="capability-grid">${portfolio}</div>
+        </section>
+
+        <section class="section">
+          <div class="section-intro">
+            <div><h2>${escapeHtml(c.projectsTitle)}</h2><div class="muted">${escapeHtml(c.projectNote)}</div></div>
+          </div>
+          <div class="project-list">${projects}</div>
+        </section>
+
+        <section class="section panel location">
+          <div class="location-copy">
+            <h2>${escapeHtml(c.locationTitle)}</h2>
+            <div class="address">${escapeHtml(c.address)}</div>
+            <p>${escapeHtml(c.contact)}</p>
+            <a class="button" href="${escapeHtml(mapOpenUrl)}" target="_blank" rel="noopener">${escapeHtml(c.mapButton)}</a>
+          </div>
+          <iframe src="${escapeHtml(mapEmbedUrl)}" title="${escapeHtml(c.locationTitle)}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
+
+        <section class="section">
+          <h2>${escapeHtml(c.newsTitle)}</h2>
+          <div class="news-grid">${news}</div>
+        </section>
+
+        <section class="panel sources">
+          <strong>${escapeHtml(c.sourcesTitle)}</strong>${sources}
+        </section>
+        <div class="footnote">${escapeHtml(c.sourceNote)}</div>
+      `;
+
+      document.querySelectorAll('[data-language]').forEach((button) => {
+        button.addEventListener('click', () => {
+          currentLanguage = button.dataset.language;
+          localStorage.setItem('vgsi-brief-language', currentLanguage);
+          const nextUrl = new URL(window.location.href);
+          nextUrl.searchParams.set('lang', currentLanguage);
+          history.replaceState(null, '', nextUrl);
+          render();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+    }
+
+    render();
+  </script>
+</body>
+</html>
